@@ -9,8 +9,8 @@ public class Menu {
     private String greeting;
 
     public Menu() {
-        seperator = "====================";
         welcomeMessage = "Welcome to Dice Wars";
+        seperator = "=".repeat(welcomeMessage.length());
         createGreeting();
         displayGreeting();
     }

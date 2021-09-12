@@ -8,7 +8,6 @@ public class Die {
 
     public Die() {
         this.sides = SIX_SIDED;
-        this.value = getValue();
     }
 
     public void roll() {
