@@ -15,4 +15,18 @@ public class Hand {
         }
     }
 
+    public String showHand(){
+        String handContents = "";
+
+        for (int i = 0; i < dice.size(); i++) {
+            if (i != dice.size() - 1) {
+                handContents += (dice.get(i).getValue() + ", ");
+            } else {
+                handContents += dice.get(i).getValue();
+            }
+
+        }
+        return handContents;
+    }
+
 }

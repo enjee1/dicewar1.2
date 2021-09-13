@@ -20,6 +20,7 @@ public class Menu {
         System.out.println("Please enter the number for your choice and press Enter: ");
         System.out.print("> ");
         choice = CLI.readNumber(gameOptions.length - (gameOptions.length - 1), gameOptions.length);
+        System.out.println();
 
         if (choice != gameOptions.length) {
             launchGame(choice);
@@ -56,12 +57,15 @@ public class Menu {
 
             System.out.print("Enter the number of players (minimum 2, maximum 10)" + "\n" + "> ");
             numPlayers = CLI.readNumber(2, 10);
+            System.out.println();
 
             System.out.print("Enter the number of dice (minimum 1, maximum 10)" + "\n" + "> ");
             numDice = CLI.readNumber(1, 10);
+            System.out.println();
 
             System.out.print("Enter the number of rounds to play (minimum 1, maximum 10)" + "\n" + "> ");
             numRounds = CLI.readNumber(1, 10);
+            System.out.println();
             Game game = new Game(numPlayers, numRounds, numDice);
         }
     }

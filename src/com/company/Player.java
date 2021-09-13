@@ -33,4 +33,8 @@ public class Player {
         return score;
     }
 
+    public Hand getHand() {
+        return hand;
+    }
+
 }

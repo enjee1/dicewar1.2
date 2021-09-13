@@ -78,8 +78,7 @@ public class Game {
     private ArrayList<Player> players = new ArrayList<Player>();
     private int numRounds;
     private int numDice;
-//    private Player winner;
-    //TODO: Modify winner to include multiple winners
+    private ArrayList<Player> winner = new ArrayList<Player>();
 
     public Game(int numOfPlayers, int numRounds, int numDice) {
         this.numRounds = numRounds;
@@ -95,25 +94,32 @@ public class Game {
         for (Die die: playerCurrentRoll) {
             die.roll();
             sum += die.getValue();
-            System.out.println(player.getName() + " rolled " + die.getValue());
         }
+
         int newScore = sum + player.getScore();
 
         player.setScore(newScore);
+        System.out.println(player.getName() + ", you rolled " + player.getHand().showHand());
         System.out.println(player.getName() + "'s total score is: " + newScore);
+        System.out.println();
     }
 
     public void startGame() {
+
         for (int i = 0; i < numRounds; i++) {
             for (Player player : players) {
+                System.out.print(player.getName() + ", it's your turn.\nPress Enter to roll your die(ce).\n> ");
+                CLI.readEnterKey();
                 playerTurn(player);
             }
+            System.out.println("*".repeat(20) + "\nRound " + (i + 1) + " has ended.\n");
         }
     }
 
     private void generatePlayers(int numPlayers) {
         for (int i = 0; i < numPlayers ; i++) {
             String name = CLI.getString("Player " + (i + 1) + ", enter your name\nName: ");
+            System.out.println();
             Player newPlayer = new Player(name, 0);
             players.add(newPlayer);
             Hand hand = new Hand();
@@ -131,5 +137,13 @@ public class Game {
             tempArr.add(newDie);
         }
         return tempArr;
+    }
+
+    private void determineWinner(){
+        int winningScore = 0;
+
+        for (Player player : players) {
+
+        }
     }
 }

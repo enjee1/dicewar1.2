@@ -31,13 +31,11 @@ public class CLI {
         return num;
     }
 
-    public static boolean readEnterKey() {
-        boolean isEnterKey = true;
+    public static void readEnterKey() {
 
         while (scanner.nextLine() != "") {
             System.out.println("Press the Enter key to proceed.");
         }
-        return isEnterKey;
 
     }
 }
