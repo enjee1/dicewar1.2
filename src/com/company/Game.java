@@ -112,8 +112,10 @@ public class Game {
                 CLI.readEnterKey();
                 playerTurn(player);
             }
-            System.out.println("*".repeat(20) + "\nRound " + (i + 1) + " has ended.\n");
+            System.out.println("*".repeat(20) + "\nRound " + (i + 1) + " has ended.\n" + "*".repeat(20) + "\n");
         }
+        determineWinner();
+
     }
 
     private void generatePlayers(int numPlayers) {
@@ -139,11 +141,44 @@ public class Game {
         return tempArr;
     }
 
-    private void determineWinner(){
-        int winningScore = 0;
+    private void determineWinner() {
+        int highestScore = 0;
+
+
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getScore() >= highestScore) { highestScore = players.get(i).getScore(); }
+        }
 
         for (Player player : players) {
+            if (player.getScore() == highestScore) winner.add(player);
+        }
+        System.out.println(showWinner(winner));
+    }
+
+    private String showWinner(ArrayList<Player> winners) {
+        String victoryMessage = "";
+        String multiWinnerNames = "";
+        int multiWinnerScore = 0;
+
+        if (winners.size() == 1) {
+            Player winner = winners.get(0);
+            victoryMessage =
+                    "The winner of the game is " + winner.getName() + " with a score of " + winner.getScore() + "."
+                            + " Congratulations " + winner.getName() + "!";
+        } else {
+            for (int i = 0; i < winners.size(); i++) {
+                if (i != winners.size() - 1) {
+                    multiWinnerNames += (winners.get(i).getName() + ", ");
+                } else {
+                    multiWinnerNames += winners.get(i).getName();
+                }
+            }
+            victoryMessage =
+                    "The winner of the game is " + multiWinnerNames+ " with a score of " + winners.get(1).getScore() + "."
+                            + " Congratulations players!";
+
 
         }
+        return victoryMessage;
     }
 }
