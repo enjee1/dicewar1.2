@@ -112,7 +112,10 @@ public class Game {
                 CLI.readEnterKey();
                 playerTurn(player);
             }
-            System.out.println("*".repeat(20) + "\nRound " + (i + 1) + " has ended.\n" + "*".repeat(20) + "\n");
+            System.out.println(
+                    CLI.createSeperator("*", 20) + "\n" +
+                    "Round " + (i + 1) + " has ended.\n" +
+                    CLI.createSeperator("*", 20) + "\n");
         }
         determineWinner();
         Menu menu = new Menu();
