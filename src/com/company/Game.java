@@ -115,6 +115,8 @@ public class Game {
             System.out.println("*".repeat(20) + "\nRound " + (i + 1) + " has ended.\n" + "*".repeat(20) + "\n");
         }
         determineWinner();
+        Menu menu = new Menu();
+        menu.run();
 
     }
 
@@ -164,18 +166,18 @@ public class Game {
             Player winner = winners.get(0);
             victoryMessage =
                     "The winner of the game is " + winner.getName() + " with a score of " + winner.getScore() + "."
-                            + " Congratulations " + winner.getName() + "!";
+                            + " Congratulations " + winner.getName() + "!\n";
         } else {
             for (int i = 0; i < winners.size(); i++) {
                 if (i != winners.size() - 1) {
                     multiWinnerNames += (winners.get(i).getName() + ", ");
                 } else {
-                    multiWinnerNames += winners.get(i).getName();
+                    multiWinnerNames += "and " + winners.get(i).getName();
                 }
             }
             victoryMessage =
-                    "The winner of the game is " + multiWinnerNames+ " with a score of " + winners.get(1).getScore() + "."
-                            + " Congratulations players!";
+                    "The winners of the game are " + multiWinnerNames+ " with a score of " + winners.get(1).getScore() + "."
+                            + " Congratulations players!\n";
 
 
         }
