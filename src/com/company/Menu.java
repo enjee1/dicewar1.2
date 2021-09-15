@@ -71,9 +71,6 @@ public class Menu {
 
             Game game = new Game(numPlayers, numRounds, numDice);
         }
+
     }
-
-
-
-
 }
