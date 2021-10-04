@@ -2,7 +2,7 @@ package com.company;
 
 public class Menu {
     private String welcomeMessage;
-    private String[] gameOptions = { "1. Play Dice Wars", "2. Exit the program" };
+    private String[] gameOptions = { "1. Play Dice Wars",  "2. Exit the program" };
     private String greeting;
     private final int MIN_NUM_PLAYERS = 2;
     private final int MIN_NUM_GAME_OPTION = 1;
@@ -31,9 +31,9 @@ public class Menu {
 
     public String createGreeting() {
         greeting =
-                (CLI.createSeperator("=", welcomeMessage.length()) + "\n" +
+                (CLI.createSeparator("=", welcomeMessage.length()) + "\n" +
                 welcomeMessage + "\n" +
-                CLI.createSeperator("=", welcomeMessage.length()) + "\n" + "\n");
+                CLI.createSeparator("=", welcomeMessage.length()) + "\n" + "\n");
 
         for (String option: gameOptions) {
             greeting += option + "\n";
@@ -70,6 +70,10 @@ public class Menu {
             System.out.println();
 
             Game game = new Game(numPlayers, numRounds, numDice);
+        } else if (gameOption == 2) {
+            //playYahtzee()
+        } else {
+            //getOutOfMyArcade();
         }
 
     }
