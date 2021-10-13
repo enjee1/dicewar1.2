@@ -1,21 +1,27 @@
 package com.company;
 
+import java.util.Random;
+
 public class Die {
 
-    private final int SIX_SIDED = 6;
-    private int sides;
+    private final Random myRand;
+    private final int sides;
     private int value;
 
     public Die() {
-        this.sides = SIX_SIDED;
+        this(6);
+    }
+
+    public Die (int sides) {
+        this.sides = sides;
+        myRand = new Random();
     }
 
     public void roll() {
-        value = (int) (Math.random() * sides + 1);
+        value = (myRand.nextInt(sides) + 1);
     }
 
     public int getValue() {
         return value;
     }
-
 }
