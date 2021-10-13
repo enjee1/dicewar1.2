@@ -12,14 +12,12 @@ public class Hand {
         }
     }
 
-    /*public void setDice(ArrayList<Die> dice) {
-        this.dice = dice;
-    }*/
-
-    public void rollDice() {
+    public int rollDice() {
+        int sum = 0;
         for (int i = 0; i < dice.size(); i++) {
-            dice.get(i).roll();
+            sum += dice.get(i).roll();
         }
+        return sum;
     }
 
     public String showHand(){

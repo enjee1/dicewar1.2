@@ -7,27 +7,24 @@ public class Player {
     private int score;
     private Hand hand;
 
-    public Player(String name, int score) {
+    public Player(String name, int diceCount) {
         this.name = name;
-        this.score = score;
+        this.hand = new Hand(diceCount);
     }
 
-    public ArrayList<Die> rollHand() {
-        hand.rollDice();
-        return hand.dice;
-    }
-
-    public void setHand(Hand hand) {
-        this.hand = hand;
+    public String takeTurn() {
+        int value = hand.rollDice();
+        score += value;
+        return hand.showHand();
     }
 
     public String getName() {
         return name;
     }
 
-    public void setScore(int value) {
+    /*public void setScore(int value) {
         score = value;
-    }
+    }*/
 
     public int getScore() {
         return score;

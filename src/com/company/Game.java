@@ -18,19 +18,19 @@ public class Game {
     }
 
     private void playerTurn(Player player) {
-        int sum = 0;
-        ArrayList<Die> playerCurrentRoll = player.rollHand();
+//        int sum = 0;
+        String playerCurrentRoll = player.takeTurn();
 
-        for (Die die: playerCurrentRoll) {
+        /*for (Die die: playerCurrentRoll) {
             die.roll();
             sum += die.getValue();
-        }
+        }*/
 
-        int newScore = sum + player.getScore();
+//        int newScore = sum + player.getScore();
 
-        player.setScore(newScore);
-        System.out.println(player.getName() + ", you rolled " + player.getHand().showHand());
-        System.out.println(player.getName() + "'s total score is: " + newScore);
+//        player.setScore(newScore);
+        System.out.println(player.getName() + ", you rolled " + playerCurrentRoll);
+        System.out.println(player.getName() + "'s total score is: " + player.getScore());
         System.out.println();
     }
 
@@ -57,23 +57,9 @@ public class Game {
         for (int i = 0; i < numPlayers ; i++) {
             String name = CLI.getString("Player " + (i + 1) + ", enter your name\nName: ");
             System.out.println();
-            Player newPlayer = new Player(name, 0);
+            Player newPlayer = new Player(name, numDice);
             players.add(newPlayer);
-            Hand hand = new Hand();
-            ArrayList<Die> newDice = generateDice();
-            hand.setDice(newDice);
-            newPlayer.setHand(hand);
         }
-    }
-
-    private ArrayList<Die> generateDice() {
-        ArrayList<Die> tempArr = new ArrayList<Die>();
-
-        for (int i = 0; i < numDice; i++) {
-            Die newDie = new Die();
-            tempArr.add(newDie);
-        }
-        return tempArr;
     }
 
     private void determineWinner() {

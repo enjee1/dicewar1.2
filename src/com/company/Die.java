@@ -17,8 +17,9 @@ public class Die {
         myRand = new Random();
     }
 
-    public void roll() {
-        value = (myRand.nextInt(sides) + 1);
+    public int roll() {
+         value = (myRand.nextInt(sides) + 1);
+         return value;
     }
 
     public int getValue() {
