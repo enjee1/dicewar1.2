@@ -3,16 +3,21 @@ package com.company;
 import java.util.ArrayList;
 
 public class Hand {
-    public ArrayList<Die> dice;
+    private ArrayList<Die> dice;
 
-    public void setDice(ArrayList<Die> dice) {
-        this.dice = dice;
+    public Hand (int diceCount) {
+        dice = new ArrayList<>();
+        for (int i = 0; i < diceCount ; i++) {
+            dice.add(new Die());
+        }
     }
 
-    public void rollDice() {
+    public int rollDice() {
+        int sum = 0;
         for (int i = 0; i < dice.size(); i++) {
-            dice.get(i).roll();
+            sum += dice.get(i).roll();
         }
+        return sum;
     }
 
     public String showHand(){
