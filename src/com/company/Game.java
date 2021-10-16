@@ -4,11 +4,9 @@ import java.util.ArrayList;
 
 public class Game {
 
-
     private ArrayList<Player> players = new ArrayList<Player>();
     private int numRounds;
     private int numDice;
-    private ArrayList<Player> winner = new ArrayList<Player>();
 
     public Game(int numOfPlayers, int numRounds, int numDice) {
         this.numRounds = numRounds;
@@ -18,17 +16,9 @@ public class Game {
     }
 
     private void playerTurn(Player player) {
-//        int sum = 0;
+        System.out.print(player.getName() + ", it's your turn.\nPress Enter to roll your die(ce).\n> ");
+        CLI.readEnterKey();
         String playerCurrentRoll = player.takeTurn();
-
-        /*for (Die die: playerCurrentRoll) {
-            die.roll();
-            sum += die.getValue();
-        }*/
-
-//        int newScore = sum + player.getScore();
-
-//        player.setScore(newScore);
         System.out.println(player.getName() + ", you rolled " + playerCurrentRoll);
         System.out.println(player.getName() + "'s total score is: " + player.getScore());
         System.out.println();
@@ -38,8 +28,6 @@ public class Game {
 
         for (int i = 0; i < numRounds; i++) {
             for (Player player : players) {
-                System.out.print(player.getName() + ", it's your turn.\nPress Enter to roll your die(ce).\n> ");
-                CLI.readEnterKey();
                 playerTurn(player);
             }
             System.out.println(
@@ -48,12 +36,11 @@ public class Game {
                     "*".repeat(20) + "\n");
         }
         determineWinner();
-        Menu menu = new Menu();
-        menu.run();
 
     }
 
     private void generatePlayers(int numPlayers) {
+
         for (int i = 0; i < numPlayers ; i++) {
             String name = CLI.getString("Player " + (i + 1) + ", enter your name\nName: ");
             System.out.println();
@@ -63,6 +50,8 @@ public class Game {
     }
 
     private void determineWinner() {
+        ArrayList<Player> winner = new ArrayList<Player>();
+
         int highestScore = 0;
 
         for (Player player : players) {
@@ -75,10 +64,10 @@ public class Game {
             }
         }
 
-        System.out.println(showWinner(winner));
+        showWinner(winner);
     }
 
-    private String showWinner(ArrayList<Player> winners) {
+    private void showWinner(ArrayList<Player> winners) {
         String victoryMessage = "";
         String multiWinnerNames = "";
         int multiWinnerScore = 0;
@@ -89,19 +78,31 @@ public class Game {
                     "The winner of the game is " + winner.getName() + " with a score of " + winner.getScore() + "."
                             + " Congratulations " + winner.getName() + "!\n";
         } else {
+            //TODO: generalize 82-97 into a helper function like, makeHumanReadable() (CLI class potential?)
             for (int i = 0; i < winners.size(); i++) {
-                if (i != winners.size() - 1) {
-                    multiWinnerNames += (winners.get(i).getName() + ", ");
-                } else {
-                    multiWinnerNames += "and " + winners.get(i).getName();
+                if (i > 0) {
+                    if (winners.size() > 2) {
+                        multiWinnerNames += ", ";
+                    }
+
+                    if (i == winners.size() - 1) {
+                        if (winners.size() == 2){
+                            multiWinnerNames += " and ";
+
+                        } else {
+                            multiWinnerNames += "and ";
+                        }
+
+                    }
                 }
+                multiWinnerNames += winners.get(i).getName();
             }
             victoryMessage =
-                    "The winners of the game are " + multiWinnerNames+ " with a score of " + winners.get(1).getScore() + "."
+                    "The winners of the game are " + multiWinnerNames + " with a score of " + winners.get(0).getScore() + "."
                             + " Congratulations players!\n";
 
 
         }
-        return victoryMessage;
+        System.out.println(victoryMessage);
     }
 }
