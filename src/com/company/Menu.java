@@ -3,50 +3,57 @@ package com.company;
 public class Menu {
     private String welcomeMessage;
     private String[] gameOptions = { "1. Play Dice Wars",  "2. Exit the program" };
-    private String greeting;
     private final int MIN_NUM_PLAYERS = 2;
     private final int MIN_NUM_GAME_OPTION = 1;
     private final int MAX_NUM_GAME_OPTION = 10;
 
+    public Menu(String gameName) {
+        welcomeMessage = "Welcome to " + gameName + "!";
+    }
+
     public Menu() {
-        welcomeMessage = "Welcome to Dice Wars";
-        createGreeting();
-        displayGreeting();
+        this("Dice Wars");
     }
 
     public void run() {
-        int choice;
+        displayGreeting();
+        while (true) {
+            int choice = promptForOption();
+            if (choice != gameOptions.length) {
+                launchGame(choice);
+            } else {
+                System.out.println("Exiting the program...");
+                System.exit(0);
+            }
+        }
+    }
+
+    private void displayGreeting() {
+        String greeting =
+                "=".repeat(welcomeMessage.length()) + "\n" +
+                welcomeMessage + "\n" +
+                "=".repeat(welcomeMessage.length()) + "\n\n";
+        System.out.println(greeting);
+
+    }
+
+    private int promptForOption() {
+        String optionsMenu = "";
+        for (String option: gameOptions) {
+            optionsMenu += option + "\n";
+        }
+
+        System.out.println(optionsMenu);
         System.out.println("Please enter the number for your choice and press Enter: ");
         System.out.print("> ");
-        choice = CLI.readNumber(MIN_NUM_GAME_OPTION, gameOptions.length);
+        int choice = CLI.readNumber(MIN_NUM_GAME_OPTION, gameOptions.length);
         System.out.println();
 
-        if (choice != gameOptions.length) {
-            launchGame(choice);
-        } else {
-            System.out.println("Exiting the program...");
-            System.exit(0);
-        }
+        return choice;
     }
 
-    public String createGreeting() {
-        greeting =
-                (CLI.createSeparator("=", welcomeMessage.length()) + "\n" +
-                welcomeMessage + "\n" +
-                CLI.createSeparator("=", welcomeMessage.length()) + "\n" + "\n");
 
-        for (String option: gameOptions) {
-            greeting += option + "\n";
-        }
-
-        return greeting;
-    }
-
-    public void displayGreeting() {
-        System.out.println(greeting);
-    }
-
-    public void launchGame(int gameOption) {
+    private void launchGame(int gameOption) {
 
         if (gameOption == 1) {
 

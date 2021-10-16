@@ -43,9 +43,9 @@ public class Game {
                 playerTurn(player);
             }
             System.out.println(
-                    CLI.createSeparator("*", 20) + "\n" +
+                    "*".repeat(20) + "\n" +
                     "Round " + (i + 1) + " has ended.\n" +
-                    CLI.createSeparator("*", 20) + "\n");
+                    "*".repeat(20) + "\n");
         }
         determineWinner();
         Menu menu = new Menu();

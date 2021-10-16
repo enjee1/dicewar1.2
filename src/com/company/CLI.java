@@ -39,9 +39,9 @@ public class CLI {
 
     }
 
-    public static String createSeparator(String c, int repeater) {
-        String output = c.repeat(repeater);
-
-        return output;
-    }
+//    public static String createSeparator(String c, int repeater) {
+//        String output = c.repeat(repeater);
+//
+//        return output;
+//    }
 }
